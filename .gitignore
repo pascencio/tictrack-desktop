@@ -24,3 +24,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Design verification screenshots (design-verify skill)
+.tmp/

@@ -1,20 +1,51 @@
 schema: spec-driven
 
-# Project context (optional)
-# This is shown to AI when creating artifacts.
-# Add your tech stack, conventions, style guides, domain knowledge, etc.
-# Example:
-#   context: |
-#     Tech stack: TypeScript, React, Node.js
-#     We use conventional commits
-#     Domain: e-commerce platform
+# Contexto inyectado en TODOS los artefactos (proposal, specs, design, tasks)
+# y en las instrucciones de apply.
+context: |
+  ## Proyecto: TicTrack Desktop
 
-# Per-artifact rules (optional)
-# Add custom rules for specific artifacts.
-# Example:
-#   rules:
-#     proposal:
-#       - Keep proposals under 500 words
-#       - Always include a "Non-goals" section
-#     tasks:
-#       - Break tasks into chunks of max 2 hours
+  Stack: Nuxt 4 (SSR off), Vue 3, Tauri 2, TypeScript, Tailwind CSS v4, shadcn-vue (reka-nova), Lucide icons.
+
+  Design source: Stitch proyecto "Tictrack V2" (Deep Focus Productivity) — dark-first, paleta Material You.
+
+  ### Skills obligatorias del repo
+
+  | Skill | Cuándo | Ruta |
+  |-------|--------|------|
+  | design-system | Al proponer, diseñar, especificar o implementar cualquier UI | .cursor/skills/design-system/SKILL.md |
+  | design-verify | Al terminar implementación con cambios visuales | .cursor/skills/design-verify/SKILL.md |
+
+  Regla global: Si el cambio toca UI, tema, colores, componentes o layouts, lee y aplica design-system antes de escribir código. Tras implementar, ejecuta el flujo completo de design-verify (no esperes que el usuario lo pida).
+
+  Tokens de color viven únicamente en app/assets/css/tailwind.css. Componentes shadcn en app/components/ui/. Logo temporal: /tauri.svg.
+
+# Reglas por artefacto (solo se inyectan en el artefacto correspondiente)
+rules:
+  proposal:
+    - Si el cambio incluye UI visible, la propuesta DEBE alinearse con el design system TicTrack V2 (skill design-system).
+    - Mencionar impacto visual — pantallas afectadas, componentes nuevos o modificados, tokens de tema si cambian.
+    - No proponer colores hex sueltos ni estilos fuera de la paleta Stitch; referenciar roles semánticos (primary, surface-container, destructive, tertiary).
+    - Identificar si el diseño de referencia existe en Stitch MCP (proyecto Tictrack V2) antes de inventar layouts.
+    - Incluir criterios de aceptación visual (dark-first, tipografías Montserrat/Inter/JetBrains Mono, glass-card donde aplique).
+
+  specs:
+    - Escenarios de UI deben usar terminología del design system (superficies, estados semánticos activo, overtime, completado, pausa).
+    - Referenciar componentes shadcn existentes antes de definir UI custom.
+    - Estados semánticos estrictos — destructive/overtime, tertiary/pausa, primary/activo; no intercambiar.
+    - Si hay mockups o pantallas Stitch, citar el nombre de la screen en los escenarios.
+
+  design:
+    - OBLIGATORIO leer skill design-system y mapear cada elemento UI a tokens CSS y clases Tailwind semánticas.
+    - Documentar qué tokens de tailwind.css se usan; prohibido hardcodear hex en componentes Vue.
+    - Preferir variantes shadcn (Button, Badge, Progress, Switch, Card) sobre HTML estilizado manual.
+    - Layout desktop — sidebar 240px (w-60), main ml-60, contenedor max-w-7xl.
+    - Iconos Lucide (@lucide/vue), no Material Symbols.
+    - Incluir sección Design system compliance listando tokens, tipografías y patrones (glass-card, timer-glow, chips rounded-full).
+
+  tasks:
+    - Tareas de UI deben indicar componentes shadcn a usar y tokens de color (no valores hex).
+    - Dividir UI en tareas pequeñas — layout, componentes, estilos/tokens, verificación.
+    - La última tarea de cualquier cambio con UI visible DEBE ser ejecutar skill design-verify (screenshot, snapshot y checklist).
+    - Si se modifican tokens globales, incluir tarea explícita para actualizar solo app/assets/css/tailwind.css.
+    - Tras completar todas las tareas de implementación, el agente apply debe correr design-verify antes de dar por cerrado el cambio.
