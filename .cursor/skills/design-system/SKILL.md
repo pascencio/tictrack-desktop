@@ -200,7 +200,7 @@ Escala base **4px**, ritmo **8px** para padding/margin:
 
 ## Logo
 
-Hasta tener asset final de Stitch, usar **`/tauri.svg`** junto al wordmark "TicTrack".
+Usar **`/tictrack-logo.png`** (Stitch: *Logo TicTrack Transparente, Borde Reforzado*) en sidebar — icono + wordmark, sin texto HTML duplicado. Usar **`/tictrack-icon.png`** solo si el contexto requiere el símbolo aislado.
 
 ## Anti-patrones (prohibido)
 

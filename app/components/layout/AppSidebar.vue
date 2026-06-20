@@ -21,13 +21,16 @@ const navItems = [
 </script>
 
 <template>
-  <aside class="fixed left-0 top-0 z-50 flex h-screen w-60 flex-col border-r border-outline-variant/10 bg-surface-container-lowest px-4 py-6">
-    <div class="mb-8 px-1">
-      <div class="mb-4 flex h-10 items-center gap-2">
-        <img src="/tauri.svg" alt="TicTrack" class="h-8 w-8" />
-        <span class="font-heading text-lg font-bold tracking-tight text-primary">TicTrack</span>
+  <aside class="fixed left-0 top-0 z-50 flex h-screen w-60 flex-col border-r border-outline-variant/10 bg-surface-container-lowest px-3 py-5 sm:px-4 sm:py-6">
+    <div class="mb-6 px-1 sm:mb-8">
+      <div class="mb-3 flex items-center sm:mb-4">
+        <img
+          src="/tictrack-logo-trim.png"
+          alt="TicTrack"
+          class="w-full max-w-[12rem] object-contain object-left"
+        />
       </div>
-      <p class="text-sm text-muted-foreground opacity-70">
+      <p class="max-w-[11rem] text-xs leading-snug text-muted-foreground opacity-70 sm:max-w-none sm:text-sm">
         Productividad de Alto Rendimiento
       </p>
     </div>

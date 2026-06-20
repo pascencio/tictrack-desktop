@@ -99,7 +99,7 @@ tokens shadcn, patrones de componentes). Resumen mínimo:
 
 **Layout global**
 - [ ] Sidebar fija a la izquierda (~240px) con logo + "TicTrack"
-- [ ] Logo usa `/tauri.svg` (placeholder hasta logo final de Stitch)
+- [ ] Logo usa `/tictrack-logo.png` (Stitch: Borde Reforzado)
 - [ ] Fondo oscuro `#051424`, texto claro legible
 - [ ] Tipografías: Montserrat (títulos), Inter (cuerpo), JetBrains Mono (timer)
 
@@ -157,7 +157,7 @@ Si el cambio proviene de un diseño Stitch:
 
 1. Obtener screenshot de referencia vía MCP Stitch (`get_screen` → URL screenshot).
 2. Comparar layout, jerarquía tipográfica, colores y espaciado.
-3. Documentar desviaciones intencionales (p. ej. logo Tauri temporal).
+3. Documentar desviaciones intencionales respecto al diseño Stitch.
 
 ## Troubleshooting
 

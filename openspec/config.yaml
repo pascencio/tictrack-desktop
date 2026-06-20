@@ -18,7 +18,7 @@ context: |
 
   Regla global: Si el cambio toca UI, tema, colores, componentes o layouts, lee y aplica design-system antes de escribir código. Tras implementar, ejecuta el flujo completo de design-verify (no esperes que el usuario lo pida).
 
-  Tokens de color viven únicamente en app/assets/css/tailwind.css. Componentes shadcn en app/components/ui/. Logo temporal: /tauri.svg.
+  Tokens de color viven únicamente en app/assets/css/tailwind.css. Componentes shadcn en app/components/ui/. Logo: /tictrack-logo.png (Stitch: Logo TicTrack Transparente, Borde Reforzado).
 
 # Reglas por artefacto (solo se inyectan en el artefacto correspondiente)
 rules:
