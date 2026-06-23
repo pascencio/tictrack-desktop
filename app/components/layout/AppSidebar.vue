@@ -11,13 +11,21 @@ import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Separator } from '@/components/ui/separator';
 
+const route = useRoute();
+
 const navItems = [
-  { label: 'Dashboard', icon: LayoutDashboard, href: '/', active: true },
-  { label: 'Tareas', icon: ListTodo, href: '#', active: false },
-  { label: 'Reportes', icon: BarChart3, href: '#', active: false },
-  { label: 'Integraciones', icon: Puzzle, href: '#', active: false },
-  { label: 'Configuración', icon: Settings, href: '#', active: false },
+  { label: 'Dashboard', icon: LayoutDashboard, to: '/' },
+  { label: 'Tareas', icon: ListTodo, to: '/tasks/new' },
+  { label: 'Reportes', icon: BarChart3, to: '#' },
+  { label: 'Integraciones', icon: Puzzle, to: '#' },
+  { label: 'Configuración', icon: Settings, to: '#' },
 ];
+
+function isActive(to: string): boolean {
+  if (to === '#') return false;
+  if (to === '/') return route.path === '/';
+  return route.path === to || route.path.startsWith(`${to}/`);
+}
 </script>
 
 <template>
@@ -35,24 +43,27 @@ const navItems = [
       </p>
     </div>
 
-    <Button class="mb-6 w-full gap-2 rounded-xl bg-primary-container font-bold text-on-primary-container shadow-lg shadow-primary/20">
+    <NuxtLink
+      to="/tasks/new"
+      class="mb-6 flex w-full items-center justify-center gap-2 rounded-xl bg-primary-container py-4 px-6 font-bold text-on-primary-container shadow-lg shadow-primary/20 transition-all hover:scale-[1.02] active:scale-95"
+    >
       <Plus class="size-4" />
       Nueva Tarea
-    </Button>
+    </NuxtLink>
 
     <nav class="flex-1 space-y-1">
-      <a
+      <NuxtLink
         v-for="item in navItems"
         :key="item.label"
-        :href="item.href"
+        :to="item.to"
         class="flex items-center gap-3 rounded-lg px-3 py-3 text-sm transition-colors"
-        :class="item.active
+        :class="isActive(item.to)
           ? 'border-r-4 border-primary bg-primary-container/10 font-bold text-primary'
           : 'font-medium text-muted-foreground hover:bg-surface-variant/50'"
       >
         <component :is="item.icon" class="size-5 shrink-0" />
         {{ item.label }}
-      </a>
+      </NuxtLink>
     </nav>
 
     <Separator class="mb-4 bg-outline-variant/10" />
