@@ -69,6 +69,12 @@ async function patchSession(body: { paused_at?: string; resumed_at?: string; com
   try {
     await api.patch<Task>(`/tasks/${s.id}`, body);
     await refresh();
+    // When completing, the task leaves the active set and should appear in
+    // the dashboard grid as `completed`. When pausing/resuming, the task
+    // stays active and is hidden from the grid, so no refresh needed.
+    if (intent === 'completed_at') {
+      await useTaskList().refresh();
+    }
   } catch (err) {
     actionError.value = err instanceof Error ? err.message : String(err);
   } finally {

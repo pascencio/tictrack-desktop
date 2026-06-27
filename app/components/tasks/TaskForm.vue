@@ -94,6 +94,10 @@ async function submit(intent: 'start' | 'save') {
       // the dashboard's ActiveTimerSection picks it up immediately.
       await refreshActiveSession();
     }
+    // Always refresh the task list so the grid reflects the new task (both
+    // `start` and `save` create a new row; `start` also auto-completes any
+    // previous active session which changes that row's status).
+    await useTaskList().refresh();
   } catch (err) {
     errorMessage.value = describeError(err);
   } finally {
